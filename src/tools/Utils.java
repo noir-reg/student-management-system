@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package studentmanagement;
+package tools;
 
 import java.util.Date;
 import java.util.Calendar;
@@ -168,7 +168,7 @@ public class Utils {
         Date d;
         Scanner sc = new Scanner(System.in);
         do {
-            System.out.println(welcome + "[y/m/d]");
+            System.out.println(welcome + "[yyyy/mm/dd]");
             inputStr = sc.nextLine().trim();
             d = toDate(inputStr, YMD);
             if (d == null) {
@@ -182,13 +182,15 @@ public class Utils {
     public static boolean confirmYesNo(String welcome, boolean oldData) {
         Scanner sc = new Scanner(System.in);
         System.out.println(welcome);
-        boolean result = false;
+        boolean result;
         String confirm = sc.nextLine();
-        if (confirm == null) {
+        if (confirm.isEmpty()) {
             result = oldData;
         } else {
             if ("Y".equalsIgnoreCase(confirm)) {
                 result = true;
+            } else {
+                result = false;
             }
 
         }
@@ -200,7 +202,7 @@ public class Utils {
         String inputStr;
         Date d = oldData;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter a date yyyy/mm/dd ");
+        System.out.println("Enter a birthdate yyyy/mm/dd ");
         inputStr = sc.nextLine().trim();
         if (!inputStr.isEmpty()) {
             do {
@@ -300,6 +302,62 @@ public class Utils {
             }
         } while (check || number < 0);
         return number;
+    }
+
+    public static double getDouble(String welcome, int min, int max, double oldData) {
+        boolean check = true;
+        double number = oldData;
+        do {
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.print(welcome);
+                String tmp = sc.nextLine();
+                if (tmp.isEmpty()) {
+                    check = false;
+                } else {
+                    number = Double.parseDouble(tmp);
+                    check = false;
+                }
+
+            } catch (Exception e) {
+                System.out.println("Input number!!!");
+            }
+        } while (check || number > max || number < min);
+        return number;
+    }
+
+    public static double getDouble(String welcome, int min, int max) {
+        boolean check = true;
+        double number = 0;
+        do {
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.print(welcome);
+                number = Double.parseDouble(sc.nextLine());
+                check = false;
+
+            } catch (Exception e) {
+                System.out.println("Input number!!!");
+            }
+        } while (check || number > max || number < min);
+        return number;
+    }
+
+    public static String strDMY(Date d) {
+        String S = "";
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        return S + c.get(Calendar.DATE) + '-' + (c.get(Calendar.MONTH) + 1) + '-' + c.get(Calendar.YEAR);
+    }
+
+    public static String strGender(boolean check) {
+        String S;
+        if (check) {
+            S = "Male";
+        } else {
+            S = "Female";
+        }
+        return S;
     }
 
 }

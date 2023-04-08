@@ -3,32 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package studentmanagement;
+package data;
 
 import java.util.Date;
+import tools.Utils;
 
 /**
  *
  * @author Admin
  */
-public class Student implements Comparable<Object>{
+public class Student implements Comparable {
 
     private String stID;
     private String fName;
     private String lName;
     private boolean gender;
-
-    public SubjectList getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(SubjectList subjects) {
-        this.subjects = subjects;
-    }
     private Date bDate;
     private String email;
     private String phone;
-    private SubjectList subjects;
 
     public Student() {
     }
@@ -43,17 +35,6 @@ public class Student implements Comparable<Object>{
         this.phone = phone;
     }
 
-    public Student(String stID, String fName, String lName, boolean gender, Date bDate, String email, String phone, SubjectList subjects) {
-        this.stID = stID;
-        this.fName = fName;
-        this.lName = lName;
-        this.gender = gender;
-        this.bDate = bDate;
-        this.email = email;
-        this.phone = phone;
-        this.subjects = subjects;
-    }
-
     public Student(String stID) {
         this.stID = stID;
     }
@@ -66,19 +47,19 @@ public class Student implements Comparable<Object>{
         this.stID = stID;
     }
 
-    public String getfName() {
+    public String getFName() {
         return fName;
     }
 
-    public void setfName(String fName) {
+    public void setFName(String fName) {
         this.fName = fName;
     }
 
-    public String getlName() {
+    public String getLName() {
         return lName;
     }
 
-    public void setlName(String lName) {
+    public void setLName(String lName) {
         this.lName = lName;
     }
 
@@ -90,11 +71,11 @@ public class Student implements Comparable<Object>{
         this.gender = gender;
     }
 
-    public Date getbDate() {
+    public Date getBDate() {
         return bDate;
     }
 
-    public void setbDate(Date bDate) {
+    public void setBDate(Date bDate) {
         this.bDate = bDate;
     }
 
@@ -116,12 +97,16 @@ public class Student implements Comparable<Object>{
 
     @Override
     public String toString() {
-        return "Student{" + "stID=" + stID + ", fName=" + fName + ", lName=" + lName + ", gender=" + gender + ", bDate=" + bDate + ", email=" + email + ", phone=" + phone + '}';
+        return "ID: " + stID + ", Name: " + lName + " " + fName + ", Gender: " +Utils.strGender(gender)+ ", Birthdate: " + Utils.strDMY(bDate) + ", Email: " + email + ", Phone: " + phone ;
     }
 
     @Override
-    public int compareTo(Object o) {
-         return this.getfName().compareToIgnoreCase(((Student)o).getfName()); 
+    public boolean equals(Object obj) {
+        return stID.equals(((Student) obj).stID);
     }
 
+    @Override
+    public int compareTo(Object obj) {
+        return this.getFName().compareToIgnoreCase(((Student) obj).getFName());
+    }
 }

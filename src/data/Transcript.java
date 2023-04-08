@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package studentmanagement;
+package data;
 
 /**
  *
  * @author Admin
  */
-public class Transcript implements Comparable<Object> {
+public class Transcript {
 
     private Subject sObj;
     private Student stObj;
@@ -28,11 +28,6 @@ public class Transcript implements Comparable<Object> {
         this.finalMark = finalMark;
     }
 
-    public Transcript(double labMark, double testMark, double finalMark) {
-        this.labMark = labMark;
-        this.testMark = testMark;
-        this.finalMark = finalMark;
-    }
 
     public Subject getsObj() {
         return sObj;
@@ -80,9 +75,7 @@ public class Transcript implements Comparable<Object> {
 
     }
 
-    public Transcript(Subject sObj) {
-        this.sObj = sObj;
-    }
+  
 
     public Transcript(Subject sObj, Student stObj) {
         this.sObj = sObj;
@@ -90,13 +83,10 @@ public class Transcript implements Comparable<Object> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        return this.sObj.getSubID().equalsIgnoreCase(((Transcript) o).sObj.getSubID()) && this.stObj.getStID().equalsIgnoreCase(((Transcript) o).stObj.getStID());
+    public boolean equals(Object obj) {
+        Transcript t = (Transcript)obj;
+        return this.stObj==t.stObj&&this.sObj==t.sObj;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 }

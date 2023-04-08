@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package studentmanagement;
+package data;
 
 /**
  *
  * @author Admin
  */
-public class Subject implements Comparable {
+public class Subject implements Comparable{
 
     private String subID;
     private String subName;
     private int credit;
-     StudentList students;
-     Transcript transObj;
 
     public Subject() {
     }
@@ -24,21 +22,6 @@ public class Subject implements Comparable {
         this.subID = subID;
         this.subName = subName;
         this.credit = credit;
-    }
-
-    public Subject(String subID, String subName, int credit, StudentList students) {
-        this.subID = subID;
-        this.subName = subName;
-        this.credit = credit;
-        this.students = students;
-    }
-
-    public Subject(String subID, String subName, int credit, StudentList students, Transcript transObj) {
-        this.subID = subID;
-        this.subName = subName;
-        this.credit = credit;
-        this.students = students;
-        this.transObj = transObj;
     }
 
     public Subject(String subID) {
@@ -69,10 +52,18 @@ public class Subject implements Comparable {
         this.credit = credit;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + subID + ", Name: " + subName + ", Credit: " + credit ;
+    }
+    
 
     @Override
-    public int compareTo(Object o) {
-         return this.getSubName().compareToIgnoreCase(((Subject)o).getSubName());
+    public boolean equals(Object obj) {
+        return subID.equals(((Subject) obj).subID);
     }
-
+    @Override
+    public int compareTo(Object obj) {
+        return this.getSubName().compareToIgnoreCase(((Subject) obj).getSubName());
+    }
 }
